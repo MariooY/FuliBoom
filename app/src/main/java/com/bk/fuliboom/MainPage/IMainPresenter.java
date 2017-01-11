@@ -10,5 +10,5 @@ import java.util.List;
 
 public interface IMainPresenter {
     void transVideoData(Data data);
-    void getVideoList(int amount, int page);
+    void getVideoList(int amount, int page, boolean update);
 }

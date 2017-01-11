@@ -11,14 +11,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
+import com.bk.fuliboom.About.AboutActivity;
+import com.bk.fuliboom.FlappyFrogModule.FlappyFrogActivity;
+import com.bk.fuliboom.IqiyiModule.IqiyiActivity;
 import com.bk.fuliboom.MainPage.MainActivity;
 import com.bk.fuliboom.R;
 import com.bk.fuliboom.YoukuModule.YoukuActivity;
+import com.umeng.analytics.MobclickAgent;
 
 public abstract class BaseActivity extends AppCompatActivity {
     private FrameLayout contentView = null;
@@ -61,6 +66,22 @@ public abstract class BaseActivity extends AppCompatActivity {
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
         configureToolbar(mToolbar);
+        mToolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.about:
+                        Intent intent = new Intent(BaseActivity.this, AboutActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                        startActivity(intent);
+                        break;
+                    default:
+                        break;
+
+                }
+                return true;
+            }
+        });
         mNavigationView = (NavigationView)findViewById(R.id.navigation);
 
         mDrawer = (DrawerLayout) findViewById(R.id.drawer);
@@ -78,11 +99,19 @@ public abstract class BaseActivity extends AppCompatActivity {
                         startActivity(intentMain);
                         break;
                     case R.id.iqiyi:
+                        Intent intentIqiyi = new Intent(BaseActivity.this, IqiyiActivity.class);
+                        intentIqiyi.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                        startActivity(intentIqiyi);
                         break;
                     case R.id.youku:
                         Intent intent = new Intent(BaseActivity.this, YoukuActivity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                         startActivity(intent);
+                        break;
+                    case R.id.play_frog:
+                        Intent frogIntent = new Intent(BaseActivity.this, FlappyFrogActivity.class);
+                        frogIntent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                        startActivity(frogIntent);
                         break;
                     default:
                         break;
@@ -104,7 +133,21 @@ public abstract class BaseActivity extends AppCompatActivity {
         mToggle.syncState();
         mDrawer.addDrawerListener(mToggle);
     }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main,menu);
+        return true;
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
 
-
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
 }

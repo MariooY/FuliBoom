@@ -17,7 +17,6 @@ public class AccountDao {
     private AccountsDBHelper helper;
     private String tableName;
     public AccountDao(String name){
-        Log.e("context" ,"" + (FuliApplication.getInstance() == null));
         helper = new AccountsDBHelper(FuliApplication.getInstance());
         tableName = name;
     }
@@ -55,7 +54,6 @@ public class AccountDao {
     public List<AccountInfo> getRecent(){
         List<AccountInfo> data = new ArrayList<>();
         String selectRecent = "select * from " + tableName + "  order by id desc limit 5";
-        Log.e("aaaaaaaaa","" + (helper == null));
         Cursor cursor = helper.getWritableDatabase().rawQuery(selectRecent,null);
         while (cursor.moveToNext()){
             AccountInfo accountInfo = new AccountInfo();
@@ -79,6 +77,19 @@ public class AccountDao {
         }
         cursor.close();
         return data;
+    }
+
+    public AccountInfo getRecentOne() throws Exception {
+        String selectOne = "select account, psw from " + tableName + "  order by id desc limit 1;";
+        Cursor cursor = helper.getReadableDatabase().rawQuery(selectOne,null);
+        if (cursor.moveToNext()){
+            AccountInfo accountInfo = new AccountInfo();
+            accountInfo.setmAccount(cursor.getString(cursor.getColumnIndex("account")));
+            accountInfo.setmPassword(cursor.getString(cursor.getColumnIndex("psw")));
+            return accountInfo;
+        } else {
+            throw new Exception("no record found");
+        }
     }
 
 }

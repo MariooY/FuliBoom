@@ -1,18 +1,12 @@
 package com.bk.fuliboom;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.os.Build;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.os.Handler;
-import android.view.MotionEvent;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 
 import com.bk.fuliboom.MainPage.MainActivity;
+import com.umeng.analytics.MobclickAgent;
 
 
 public class SplashActivity extends AppCompatActivity {
@@ -21,6 +15,7 @@ public class SplashActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        MobclickAgent.setScenarioType(this, MobclickAgent.EScenarioType.E_UM_NORMAL);
         View decorView = getWindow().getDecorView();
 // Hide the status bar.
         int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
@@ -38,5 +33,17 @@ public class SplashActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+
+    }
 
 }

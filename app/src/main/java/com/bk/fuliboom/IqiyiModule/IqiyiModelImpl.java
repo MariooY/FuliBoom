@@ -1,4 +1,4 @@
-package com.bk.fuliboom.YoukuModule;
+package com.bk.fuliboom.IqiyiModule;
 
 import android.content.Context;
 import android.util.Log;
@@ -31,15 +31,15 @@ import rx.schedulers.Schedulers;
  * Created by Bk on 2016/8/29.
  */
 
-public class YoukuModelImpl implements IYoukuModel {
+public class IqiyiModelImpl implements IqiyiModel {
     private AccountDao dao;
     private static final String BASE_URL = "http://www.cengfan8.com/";
-    private IYoukuPresenter mPresenter;
+    private IqiyiPresenter mPresenter;
     APIService service;
     private Context mContext;
 
 
-    public YoukuModelImpl(IYoukuPresenter presenter) {
+    public IqiyiModelImpl(IqiyiPresenter presenter) {
         mContext = FuliApplication.getInstance();
         service = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -48,12 +48,12 @@ public class YoukuModelImpl implements IYoukuModel {
                 .build()
                 .create(APIService.class);
         mPresenter =presenter;
-        dao = new AccountDao(AccountsDBHelper.TABLE_YOUKU);
+        dao = new AccountDao(AccountsDBHelper.TABLE_IQIYI);
     }
 
     @Override
     public void  getNewAccount(String Captchar) {
-        service.getAccount(Captchar,"2")
+        service.getAccount(Captchar,"3")
                 .subscribeOn(Schedulers.io())
                 .flatMap(new Func1<JsonResult, Observable<AccountInfo>>() {
                     @Override
@@ -175,12 +175,12 @@ public class YoukuModelImpl implements IYoukuModel {
         Observable<JsonResult> getAccount(@Query("code") String code, @Query("typename") String typename);
 
 
-        @GET("youku")
-        Observable<Response<ResponseBody>> getAccounts();
+//        @GET("youku")
+//        Observable<Response<ResponseBody>> getAccounts();
 
 
         @Headers("Referer:http://www.cengfan8.com/i/")
-        @GET("code.php?s=8733613082")
+        @GET("code.php?s=6029139708")
         Observable<Response<ResponseBody>> getCaptcha();
 
 

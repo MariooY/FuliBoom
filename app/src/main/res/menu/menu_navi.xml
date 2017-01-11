@@ -21,6 +21,12 @@
         android:id="@+id/iqiyi"
         android:title="爱奇艺"
         android:icon="@drawable/ic_iqiyi_32dp"/>
+        <item
+
+            android:id="@+id/play_frog"
+            android:title="来赛艇啊"
+            android:icon="@drawable/flappyfrog"/>
+
     </group>
 
 

@@ -5,7 +5,7 @@ package com.bk.fuliboom.Repository.Beans;
  */
 
 public class Result {
-    private String id;
+    private String _id;
     private String createdAt;
     private String desc;
     private String publishedAt;
@@ -21,7 +21,7 @@ public class Result {
      * The id
      */
     public String getId() {
-        return id;
+        return _id;
     }
 
     /**
@@ -30,7 +30,7 @@ public class Result {
      * The _id
      */
     public void setId(String id) {
-        this.id = id;
+        this._id = id;
     }
 
     /**
@@ -177,4 +177,8 @@ public class Result {
         this.who = who;
     }
 
+    @Override
+    public String toString() {
+        return _id + desc + createdAt;
+    }
 }

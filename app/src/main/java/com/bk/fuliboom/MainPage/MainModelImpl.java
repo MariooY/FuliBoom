@@ -48,7 +48,7 @@ public class MainModelImpl implements IMainModel {
 
                     @Override
                     public void onNext(Data data) {
-                        Log.e("data", "recieving   " + data.getResults().get(0).getDesc());
+                        Log.e("data",data.getError() + "");
                         mPresenter.transVideoData(data);
                     }
                 });

@@ -1,4 +1,4 @@
-package com.bk.fuliboom.YoukuModule;
+package com.bk.fuliboom.IqiyiModule;
 
 import android.content.ClipData;
 import android.content.ClipboardManager;
@@ -20,10 +20,13 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
 import com.bk.fuliboom.Adapters.AccountListAdapter;
 import com.bk.fuliboom.R;
 import com.bk.fuliboom.Repository.Beans.AccountInfo;
+import com.bk.fuliboom.Utils.Hints;
+import com.bk.fuliboom.YoukuModule.IYouKuView;
+import com.bk.fuliboom.YoukuModule.IYoukuPresenter;
+import com.bk.fuliboom.YoukuModule.YoukuPresenterImpl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,17 +41,18 @@ import static android.content.Context.CLIPBOARD_SERVICE;
  * Activities that contain this fragment must implement the
  * {@link OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link YoukuFragment#newInstance} factory method to
+ * Use the {@link IqiyiFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class YoukuFragment extends Fragment implements View.OnClickListener , IYouKuView {
+public class IqiyiFragment extends Fragment implements View.OnClickListener , IqiyiView {
     private Context mContext;
     private OnFragmentInteractionListener mListener;
-    private IYoukuPresenter mPresenter;
+    private IqiyiPresenter mPresenter;
     private ClipboardManager clipboard;
     private AccountListAdapter mAdapter;
     private List<AccountInfo> mDataList;
     private freshTimer timer;
+
 
 
     @BindView(R.id.account)
@@ -79,8 +83,8 @@ public class YoukuFragment extends Fragment implements View.OnClickListener , IY
     @BindView(R.id.refresh_layout)
     SwipeRefreshLayout refreshLayout;
 
-    public YoukuFragment() {
-        mPresenter = new YoukuPresenterImpl(this);
+    public IqiyiFragment() {
+        mPresenter = new IqiyiPresenterImpl(this);
     }
 
     /**
@@ -90,8 +94,8 @@ public class YoukuFragment extends Fragment implements View.OnClickListener , IY
      * @return A new instance of fragment YoukuFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static YoukuFragment newInstance() {
-        YoukuFragment fragment = new YoukuFragment();
+    public static IqiyiFragment newInstance() {
+        IqiyiFragment fragment = new IqiyiFragment();
         return fragment;
     }
 
@@ -200,7 +204,8 @@ public class YoukuFragment extends Fragment implements View.OnClickListener , IY
 //        mAdapter.notifyDataSetChanged();
         accountText.setText(accountInfo.getmAccount());
         passText.setText(accountInfo.getmPassword());
-        mPresenter.getPastAccount();
+        mDataList.add(accountInfo);
+        mAdapter.notifyDataSetChanged();
     }
 
     @Override

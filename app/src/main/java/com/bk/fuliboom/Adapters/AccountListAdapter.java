@@ -51,7 +51,7 @@ public class AccountListAdapter extends BaseAdapter{
     }
 
     @Override
-    public View getView(final int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, final ViewGroup parent) {
         ViewHolder holder;
         if (convertView == null){
             holder = new ViewHolder();
@@ -60,6 +60,7 @@ public class AccountListAdapter extends BaseAdapter{
             holder.pswText = (TextView)convertView.findViewById(R.id.item_psw);
             holder.accBtn = (Button) convertView.findViewById(R.id.copy_acc_item);
             holder.pswBtn = (Button)convertView.findViewById(R.id.copy_psw_item);
+            holder.copyBtn = (Button)convertView.findViewById(R.id.btn_copy_all);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
@@ -82,6 +83,14 @@ public class AccountListAdapter extends BaseAdapter{
                 Toast.makeText(mContext,"已复制密码到粘贴板",Toast.LENGTH_SHORT).show();
             }
         });
+        holder.copyBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clip = ClipData.newPlainText("all", "账号："+data.get(position).getmAccount()+ "\n密码：" + data.get(position).getmPassword() );
+                clipboard.setPrimaryClip(clip);
+                Toast.makeText(mContext,"已复制账号密码到粘贴板！",Toast.LENGTH_SHORT).show();
+            }
+        });
         return convertView;
     }
 
@@ -92,6 +101,7 @@ public class AccountListAdapter extends BaseAdapter{
         public TextView pswText;
         public Button accBtn;
         public Button pswBtn;
+        public Button copyBtn;
 
     }
 

@@ -6,6 +6,7 @@
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="state_open">open</string>
     <string name="state_close">close</string>
+    <string name="about"><p>后面还会继续添加更多功能，敬请期待。</p> <br /><p>联系邮箱：cjyaosir@sina.com</p></string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

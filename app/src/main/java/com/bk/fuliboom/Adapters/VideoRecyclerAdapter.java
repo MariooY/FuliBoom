@@ -1,5 +1,6 @@
 package com.bk.fuliboom.Adapters;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -24,15 +25,16 @@ import butterknife.ButterKnife;
 public class VideoRecyclerAdapter extends RecyclerView.Adapter<VideoRecyclerAdapter.VideoListHolder> {
     private List<Result> data;
     private onItemClickListener itemClickListener;
+    private Context mContext;
 
-    public VideoRecyclerAdapter( List<Result> data) {
+    public VideoRecyclerAdapter(List<Result> data, Context context) {
         this.data = data;
+        mContext = context;
     }
 
     @Override
     public VideoListHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        Log.e("recyclerview", "inflating");
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_ganhuo,parent,false);
+        View view = LayoutInflater.from(mContext).inflate(R.layout.item_ganhuo,parent,false);
         return new VideoListHolder(view);
     }
 
@@ -54,7 +56,6 @@ public class VideoRecyclerAdapter extends RecyclerView.Adapter<VideoRecyclerAdap
 
     @Override
     public int getItemCount() {
-        Log.e("count", "" + data.size());
         return data.size();
     }
 

@@ -43,7 +43,18 @@
         </activity>
         <activity
             android:name=".SettingsActivity"
-            android:label="@string/title_activity_settings"></activity>
+            android:label="@string/title_activity_settings" />
+        <activity android:name=".About.AboutActivity" />
+        <activity android:name=".IqiyiModule.IqiyiActivity" />
+
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="57de58d8e0f55a2f1d001c88" />
+        <meta-data
+            android:name="UMENG_CHANNEL"
+            android:value="Bmob" />
+
+        <activity android:name=".FlappyFrogModule.FlappyFrogActivity"></activity>
     </application>
 
 </manifest>

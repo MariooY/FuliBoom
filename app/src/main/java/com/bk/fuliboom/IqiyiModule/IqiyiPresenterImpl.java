@@ -1,11 +1,12 @@
-package com.bk.fuliboom.YoukuModule;
+package com.bk.fuliboom.IqiyiModule;
 
-import android.content.Context;
 import android.graphics.BitmapFactory;
-import android.util.Log;
-
 
 import com.bk.fuliboom.Repository.Beans.AccountInfo;
+import com.bk.fuliboom.YoukuModule.IYouKuView;
+import com.bk.fuliboom.YoukuModule.IYoukuModel;
+import com.bk.fuliboom.YoukuModule.IYoukuPresenter;
+import com.bk.fuliboom.YoukuModule.YoukuModelImpl;
 
 import java.io.InputStream;
 import java.util.List;
@@ -14,13 +15,13 @@ import java.util.List;
  * Created by Bk on 2016/8/29.
  */
 
-public class YoukuPresenterImpl implements IYoukuPresenter {
-    private IYoukuModel mModel;
-    private IYouKuView mView;
+public class IqiyiPresenterImpl implements IqiyiPresenter {
+    private IqiyiModel mModel;
+    private IqiyiView mView;
 
-    public YoukuPresenterImpl(IYouKuView mView) {
+    public IqiyiPresenterImpl(IqiyiView mView) {
         this.mView = mView;
-        mModel = new YoukuModelImpl(this);
+        mModel = new IqiyiModelImpl(this);
     }
 
     @Override

@@ -39,6 +39,20 @@
                 android:id="@+id/copy_psw_item"
                 android:text="复制"/>
         </TableRow>
+        <TableRow
+            android:background="@color/colorPrimaryLight"
+            android:paddingBottom="5dp">
+            <TextView />
+            <Button
+                android:layout_marginTop="5dp"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/roundedbutton"
+                android:id="@+id/btn_copy_all"
+                android:text="一键复制"
+                />
+
+        </TableRow>
     </TableLayout>
+
 
 </android.support.v7.widget.CardView>

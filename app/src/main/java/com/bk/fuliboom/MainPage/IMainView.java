@@ -12,4 +12,5 @@ public interface IMainView {
     void appendVideoList(List<Result> results);
     void getVideoList(int amount, int page);
     void showError(String msg);
+    void showUpdate(List<Result> results);
 }
